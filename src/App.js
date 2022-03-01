@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React, { useState, useEffect } from 'react'
+import weatherService from './services/Weather.js'
+
+const App = () => {
+  const [weatherData, setWeatherData] = useState([])
+
+  useEffect(() => {
+    weatherService.getWeatherData()
+  }, [])
+  const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start',
+      width: '100%',
+      fontFamily: 'Arial, Helvetica, sans-serif'
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div style={styles.container}>
+      Test
+
+    </div >
+  )
 }
 
-export default App;
+export default App
