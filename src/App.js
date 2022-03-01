@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import weatherService from './services/Weather.js'
-import city from './components/City.js'
+import City from './components/City.js'
 
 const App = () => {
     const [weatherData, setWeatherData] = useState([])
@@ -16,13 +16,13 @@ const App = () => {
             flexWrap: 'wrap',
             alignItems: 'flex-start',
             width: '100%',
-            fontFamily: 'Arial, Helvetica, sans-serif'
+            fontFamily: 'Arial Regular, Helvetica, sans-serif'
         }
     }
 
     return (
         <div style={styles.container}>
-            Test
+            <City weatherData={weatherData} />
 
         </div >
     )

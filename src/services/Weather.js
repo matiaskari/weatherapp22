@@ -7,22 +7,22 @@ const getWeatherData = async () => {
         {
             //Tampere
             id: '634963'.toString(),
-            data: []
+            data: ''
         },
         {
             //Jyväskylä
             id: '655195',
-            data: []
+            data: ''
         },
         {
             //Kuopio
             id: '650225',
-            data: []
+            data: ''
         },
         {
             //Espoo
             id: '660129',
-            data: []
+            data: ''
         }
     ]
     try {
@@ -31,8 +31,8 @@ const getWeatherData = async () => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
-        )
+        })
+        console.log("Promisearray", promiseArray)
         const request = await Promise.all(promiseArray)
         console.log("Cities", cities)
         return request.then(response => response.data)
