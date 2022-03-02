@@ -8,7 +8,7 @@ const NextWeather = ({ weatherData }) => {
     }
     return (<div style={style.box}>
         <p>15:00</p>
-        <p>Scattered clouds</p>
+        <p>Debug: {weatherData}</p>
     </div >)
 }
 

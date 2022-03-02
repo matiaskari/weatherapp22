@@ -8,6 +8,11 @@ const App = () => {
 
     useEffect(() => {
         weatherService.getWeatherData()
+            .then(response => {
+                setWeatherData(response)
+                console.log('Weatherdata', weatherData)
+            })
+
     }, [])
     const styles = {
         container: {

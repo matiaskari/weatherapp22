@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 const APIkey = '06c6c105b0c70ae431dc41c8de9cff77'
 
@@ -6,7 +5,7 @@ const getWeatherData = async () => {
     const cities = [
         {
             //Tampere
-            id: '634963'.toString(),
+            id: '634963',
             data: ''
         },
         {
@@ -26,16 +25,19 @@ const getWeatherData = async () => {
         }
     ]
     try {
-        const promiseArray = cities.map(city => city.data =
-            axios.get('api.openweathermap.org/data/2.5/weather?id=' + city.id + '&appid=' + APIkey), {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        const promiseArray = cities.map(city =>
+            fetch('api.openweathermap.org/data/2.5/weather?id=' + city.id + '&appid=' + APIkey, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        )
         console.log("Promisearray", promiseArray)
-        const request = await Promise.all(promiseArray)
-        console.log("Cities", cities)
-        return request.then(response => response.data)
+        await Promise.all(promiseArray)
+        /*.then(response => {
+            console.log(response)
+        })*/
+        return cities[0].data
     } catch (error) {
         console.log(error)
     }
