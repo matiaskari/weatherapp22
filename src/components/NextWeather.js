@@ -6,10 +6,12 @@ const NextWeather = ({ weatherData }) => {
             borderColor: '#E6E6E6'
         }
     }
-    return (<div style={style.box}>
-        <p>15:00</p>
-        <p>Debug: {weatherData}</p>
-    </div >)
+    return (
+        <div style={style.box}>
+            <p>15:00</p>
+            <p>Debug: {weatherData}</p>
+        </div>
+    )
 }
 
 export default NextWeather

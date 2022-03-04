@@ -12,12 +12,14 @@ const CurrentWeather = ({ weatherData }) => {
             fontSize: '23pt'
         }
     }
-    return (<div style={style.box}>
-        <h1 style={style.title}>Espoo</h1>
-        <p>Scattered clouds</p>
-        <h5>May 2nd</h5>
-        <p>11:53</p>
-    </div >)
+    return (
+        <div style={style.box}>
+            <h1 style={style.title}>Espoo</h1>
+            <p>Scattered clouds</p>
+            <h5>May 2nd</h5>
+            <p>11:53</p>
+        </div>
+    )
 }
 
 export default CurrentWeather
