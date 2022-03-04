@@ -15,18 +15,18 @@ const App = () => {
 
     }, [])
     const styles = {
-        container: {
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
+        page: {
+            display: 'grid',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
             width: '100%',
-            fontFamily: 'Arial Regular, Helvetica, sans-serif'
+            fontFamily: 'Arial Regular, Helvetica, sans-serif',
+            backgroundColor: '#F8F9FA'
         }
     }
 
     return (
-        <div style={styles.container}>
+        <div style={styles.page}>
             <City weatherData={weatherData} />
 
         </div >
