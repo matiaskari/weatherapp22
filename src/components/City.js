@@ -12,7 +12,7 @@ const City = ({ weatherData }) => {
             display: 'grid',
             gridTemplateColumns: 'auto auto auto auto auto',
             columnGap: '10px',
-            margin: '0 20px 0 20px'
+            margin: '0 20px 20px 20px'
         },
         next: {
             color: 'black'

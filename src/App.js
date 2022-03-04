@@ -22,13 +22,37 @@ const App = () => {
             width: '100%',
             fontFamily: 'Arial Regular, Helvetica, sans-serif',
             backgroundColor: '#F8F9FA'
+        },
+        title: {
+            fontSize: '23pt',
+            textAlign: 'center',
+            backgroundColor: '#FFFFFF',
+            margin: '0',
+            padding: '0.7em',
+            borderStyle: 'none',
+            borderBottomStyle: 'solid',
+            borderWidth: '2px',
+            borderColor: '#E6E6E6',
         }
     }
 
+    const citySelector = <form>
+        <select name='cities'>
+            <option value={'Espoo'}>Espoo</option>
+            <option value={'Jyväskylä'}>Jyväskylä</option>
+            <option value={'Kuopio'}>Kuopio</option>
+            <option value={'Tampere'}>Tampere</option>
+        </select>
+    </form>
+
     return (
         <div style={styles.page}>
+            <p style={styles.title}>Säätutka</p>
+            {citySelector}
             <City weatherData={weatherData} />
-
+            <City weatherData={weatherData} />
+            <City weatherData={weatherData} />
+            <City weatherData={weatherData} />
         </div >
     )
 }
