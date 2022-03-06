@@ -10,17 +10,16 @@ const getWeatherData = async () => {
     ]
     try {
         const endArray = []
-        const promiseArray = cityIDs.map(id => {
-            fetch('api.openweathermap.org/data/2.5/weather?id=' + id + '&appid=' + APIkey)
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        }
+        for (let i = 0; i < cityIDs.length; i++) {
+            await fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityIDs[i] + '&appid=' + APIkey, requestOptions)
                 .then(response => response.json())
-        })
-        console.log("Promisearray", promiseArray)
-
-        await Promise.all(promiseArray)
-            .then(data => {
-                data.forEach(cityData => endArray.push(cityData))
-            })
-
+                .then(result => endArray.push(result))
+                .catch(error => console.log('error', error))
+        }
         console.log('EndArray', endArray)
         return endArray
     } catch (error) {

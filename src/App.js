@@ -7,12 +7,12 @@ const App = () => {
     const [weatherData, setWeatherData] = useState([])
 
     useEffect(() => {
-        weatherService.getWeatherData()
-            .then(response => {
-                setWeatherData(response)
-                console.log('Weatherdata', weatherData)
-            })
-
+        async function getData() {
+            const data = await weatherService.getWeatherData()
+            setWeatherData(data)
+            console.log('Weatherdata', data)
+        }
+        getData()
     }, [])
     const styles = {
         page: {
@@ -38,6 +38,7 @@ const App = () => {
 
     const citySelector = <form>
         <select name='cities'>
+            <option value={'Kaikki kaupungit'}>Kaikki kaupungit</option>
             <option value={'Espoo'}>Espoo</option>
             <option value={'Jyväskylä'}>Jyväskylä</option>
             <option value={'Kuopio'}>Kuopio</option>
@@ -49,10 +50,10 @@ const App = () => {
         <div style={styles.page}>
             <p style={styles.title}>Säätutka</p>
             {citySelector}
-            <City weatherData={weatherData} />
-            <City weatherData={weatherData} />
-            <City weatherData={weatherData} />
-            <City weatherData={weatherData} />
+            <City weatherData={weatherData[0]} />
+            <City weatherData={weatherData[1]} />
+            <City weatherData={weatherData[2]} />
+            <City weatherData={weatherData[3]} />
         </div >
     )
 }
