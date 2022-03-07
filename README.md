@@ -14,5 +14,5 @@ It functions the best on a mobile device as the UI has been made primarily for t
 
 ## How to run it
 
-In order to run it yourself, locate the file './services/Weather.js' and insert your own free OpenWeatherMap API key as the value of the variable 'APIkey'.
+In order to run it yourself, locate the file './src/services/Weather.js' and insert your own free OpenWeatherMap API key as the value of the variable 'APIkey', which is located at the top of the file.
 Remember to keep the type of 'APIkey' as String by inserting your API key between the single quotation marks.
