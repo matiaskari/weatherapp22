@@ -55,7 +55,7 @@ const CurrentWeather = ({ weatherData }) => {
         }
     }
 
-    const date = new Date(weatherData.dt * 1000)
+    const date = new Date(weatherData.dt * 1000) //Date and time of the latest updated weather data in that specific location
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let dayNumber = ''
     if (date.getDate() === 1 || date.getDate() === 21 || date.getDate() === 31) { //Formatting the number of the date
@@ -68,8 +68,8 @@ const CurrentWeather = ({ weatherData }) => {
         dayNumber = date.getDate() + 'th'
     }
 
-    const day = months[date.getMonth()] + ' ' + dayNumber
-    const time = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+    const day = months[date.getMonth()] + ' ' + dayNumber //Constructing the date
+    const time = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) //Constructing the time
 
     const capitalize = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1)
@@ -94,7 +94,7 @@ const CurrentWeather = ({ weatherData }) => {
             precipitation = weatherData.snow['1h']
             precipDuration = '1'
         }
-    } else {
+    } else { //If there is no rain or snow, the data will not have properties 'rain' or 'snow' at all, in which case don't try to look for them, just show zero
         precipitation = '0'
     }
 

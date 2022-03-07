@@ -15,7 +15,7 @@ const City = ({ weatherData }) => {
             margin: '0 20px 20px 20px'
         }
     }
-    if (weatherData) {
+    if (weatherData) { //Preventing crashes caused by the data not having loaded yet
         return (
             <div>
                 <div style={style.current}>

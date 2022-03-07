@@ -45,7 +45,7 @@ const NextWeather = ({ weatherData }) => {
 
     let precipitation = '' //Variable to save the amount of precipitation, either rain or snow
 
-    if (weatherData.hasOwnProperty('rain')) {
+    if (weatherData.hasOwnProperty('rain')) { //Precipitation data is always shown in intervals of 3h, unlike in the current weather data (CurrentWeather.js)
         precipitation = weatherData.rain['3h']
     } else if (weatherData.hasOwnProperty('snow')) {
         precipitation = weatherData.snow['3h']

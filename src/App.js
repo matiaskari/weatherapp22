@@ -5,11 +5,10 @@ import City from './components/City.js'
 import './index.css'
 
 const App = () => {
-    const [weatherData, setWeatherData] = useState([])
-    const [dropDownValue, setDropDownValue] = useState('Kaikki kaupungit')
-    let shownCity = <div></div>
+    const [weatherData, setWeatherData] = useState([]) //Storing all the fetched weather data here
+    const [dropDownValue, setDropDownValue] = useState('Kaikki kaupungit') //Storing the value of the dropdown menu here
 
-    useEffect(() => {
+    useEffect(() => { //On page load, fetch all the current weather data and store it in 'weatherData'
         async function getData() {
             const data = await weatherService.getWeatherData()
             setWeatherData(data)
@@ -57,6 +56,7 @@ const App = () => {
         setDropDownValue(event.target.value)
     }
 
+    //creating the dropdown menu
     const citySelector =
         <select style={styles.dropdown} name='cities' onChange={handleChange}>
             <option value={'Kaikki kaupungit'}>Kaikki kaupungit</option>
@@ -66,15 +66,17 @@ const App = () => {
             <option value={'634963'}>Tampere</option>
         </select>
 
+    //Variable for which city to show, based on the dropdown menu
+    let shownCity = <div></div>
 
-    if (dropDownValue === 'Kaikki kaupungit') {
+    if (dropDownValue === 'Kaikki kaupungit') { //All cities, default value
         shownCity = <div>
             <City weatherData={weatherData[0]} />
             <City weatherData={weatherData[1]} />
             <City weatherData={weatherData[2]} />
             <City weatherData={weatherData[3]} />
         </div>
-    } else {
+    } else { //Single city
         shownCity = <div>
             <City weatherData={weatherData.find(city => city[0].id.toString() === dropDownValue)} />
         </div>
