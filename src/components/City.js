@@ -13,25 +13,28 @@ const City = ({ weatherData }) => {
             gridTemplateColumns: 'auto auto auto auto auto',
             columnGap: '10px',
             margin: '0 20px 20px 20px'
-        },
-        next: {
-            color: 'black'
         }
     }
-    return (
-        <div>
-            <div style={style.current}>
-                <CurrentWeather weatherData={weatherData} />
+    if (weatherData) {
+        return (
+            <div>
+                <div style={style.current}>
+                    <CurrentWeather weatherData={weatherData[0]} />
+                </div>
+                <div style={style.nextBox}>
+                    <NextWeather weatherData={weatherData[1].list[0]} />
+                    <NextWeather weatherData={weatherData[1].list[1]} />
+                    <NextWeather weatherData={weatherData[1].list[2]} />
+                    <NextWeather weatherData={weatherData[1].list[3]} />
+                    <NextWeather weatherData={weatherData[1].list[4]} />
+                </div>
             </div>
-            <div style={style.nextBox}>
-                <NextWeather weatherData={weatherData} />
-                <NextWeather weatherData={weatherData} />
-                <NextWeather weatherData={weatherData} />
-                <NextWeather weatherData={weatherData} />
-                <NextWeather weatherData={weatherData} />
-            </div>
-        </div >
-    )
+        )
+    } else {
+        return (
+            <div>Loading Data...</div>
+        )
+    }
 }
 
 export default City

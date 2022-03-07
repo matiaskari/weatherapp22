@@ -23,6 +23,7 @@ const App = () => {
             alignItems: 'center',
             justifyContent: 'space-evenly',
             width: '100%',
+            height: '100%',
             fontFamily: 'Arial Regular, Helvetica, sans-serif',
             backgroundColor: '#F8F9FA',
             margin: '0',

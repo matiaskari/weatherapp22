@@ -38,17 +38,32 @@ const NextWeather = ({ weatherData }) => {
             margin: '3px'
         }
     }
+
+    const date = new Date(weatherData.dt * 1000)
+    const time = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+
+
+    let precipitation = '' //Variable to save the amount of precipitation, either rain or snow
+
+    if (weatherData.hasOwnProperty('rain')) {
+        precipitation = weatherData.rain['3h']
+    } else if (weatherData.hasOwnProperty('snow')) {
+        precipitation = weatherData.snow['3h']
+    } else {
+        precipitation = '0'
+    }
+
     return (
         <div style={style.box}>
             <div style={style.topBox}>
-                <p style={style.time}>15:00</p>
-                <p>[Icon]</p>
-                <p style={style.temp}>-1 &deg;C</p>
+                <p style={style.time}>{time}</p>
+                <img src={'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'} alt={weatherData.weather[0].description} />
+                <p style={style.temp}>{Math.round(weatherData.main.temp - 273.15) / 1} &deg;C</p>
             </div>
             <div style={style.bottomBox}>
-                <p style={style.tinyText}>2.1 m/s</p>
-                <p style={style.tinyText}>5 %</p>
-                <p style={style.tinyText}>1 mm</p>
+                <p style={style.tinyText}>{weatherData.wind.speed} m/s</p>
+                <p style={style.tinyText}>{weatherData.main.humidity} %</p>
+                <p style={style.tinyText}>{precipitation} mm</p>
             </div>
         </div>
     )

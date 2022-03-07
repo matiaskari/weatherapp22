@@ -9,7 +9,7 @@ const getWeatherData = async () => {
         '634963' //Tampere
     ]
     try {
-        const endArray = [[], [], [], []]
+        const endArray = [[], [], [], []] //Sorting all the data by city, with each array element containing an array that has first the current weather and then the forecast of the city
         const requestOptions = {
             method: 'GET',
             redirect: 'follow'
@@ -26,7 +26,6 @@ const getWeatherData = async () => {
                 .then(result => endArray[i].push(result))
                 .catch(error => console.log('error', error))
         }
-        console.log('EndArray', endArray)
         return endArray
     } catch (error) {
         console.log(error)
