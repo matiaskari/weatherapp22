@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import weatherService from './services/Weather.js'
 import City from './components/City.js'
+import './index.css'
 
 const App = () => {
     const [weatherData, setWeatherData] = useState([])
@@ -25,6 +26,12 @@ const App = () => {
             fontFamily: 'Arial Regular, Helvetica, sans-serif',
             backgroundColor: '#F8F9FA'
         },
+        topBar: {
+            backgroundColor: '#00A5E5',
+            color: '#00A5E5',
+            margin: '0',
+            height: '20px'
+        },
         title: {
             fontSize: '23pt',
             textAlign: 'center',
@@ -35,6 +42,12 @@ const App = () => {
             borderBottomStyle: 'solid',
             borderWidth: '2px',
             borderColor: '#E6E6E6',
+        },
+        dropdown: {
+            fontSize: '13pt',
+            width: 'inherit',
+            padding: '10px',
+            margin: '20px 20px 0 20px'
         }
     }
 
@@ -43,7 +56,7 @@ const App = () => {
     }
 
     const citySelector = <form>
-        <select name='cities' onChange={handleChange}>
+        <select style={styles.dropdown} name='cities' onChange={handleChange}>
             <option value={'Kaikki kaupungit'}>Kaikki kaupungit</option>
             <option value={'660129'}>Espoo</option>
             <option value={'655195'}>Jyväskylä</option>
@@ -67,6 +80,7 @@ const App = () => {
 
     return (
         <div style={styles.page}>
+            <p style={styles.topBar}>_</p>
             <p style={styles.title}>Säätutka</p>
             {citySelector}
             {shownCity}
