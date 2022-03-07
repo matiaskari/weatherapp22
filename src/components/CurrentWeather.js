@@ -10,7 +10,7 @@ const CurrentWeather = ({ weatherData }) => {
             borderStyle: 'solid',
             borderWidth: '2px',
             borderColor: '#E6E6E6',
-            borderRadius: '10px',
+            borderRadius: '7px',
             padding: '20px',
             backgroundColor: '#FFFFFF'
         },
@@ -39,7 +39,10 @@ const CurrentWeather = ({ weatherData }) => {
             textAlign: 'right',
             verticalAlign: 'bottom'
         },
-        temp: {
+        tempBox: {
+            display: 'inline-grid',
+            gridTemplateColumns: 'auto auto',
+            justifyItems: 'right',
             fontSize: '26pt',
             color: '#262626',
             margin: '0',
@@ -101,9 +104,9 @@ const CurrentWeather = ({ weatherData }) => {
                 <p style={style.title}>{weatherData.name === 'Jyvaskyla' ? 'Jyväskylä' : weatherData.name}</p>
                 <p style={style.smallText}>{capitalize(weatherData.weather[0].description)}</p>
             </div>
-            <div>
-
-                <p style={style.temp}><img src={'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'} alt={weatherData.weather[0].description} />{Math.round(weatherData.main.temp - 273.15) / 1} &deg;C</p>
+            <div style={style.tempBox}>
+                <img src={'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'} alt={weatherData.weather[0].description} />
+                <p>{Math.round(weatherData.main.temp - 273.15) / 1} &deg;C</p>
             </div>
             <div>
                 <p style={style.subTitle}>{day}</p>

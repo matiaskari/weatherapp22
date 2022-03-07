@@ -19,36 +19,35 @@ const App = () => {
     }, [])
     const styles = {
         page: {
-            display: 'grid',
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
             width: '100%',
             height: '100%',
             fontFamily: 'Arial Regular, Helvetica, sans-serif',
-            backgroundColor: '#F8F9FA',
             margin: '0',
-            padding: '0'
-        },
-        topBar: {
-            backgroundColor: '#00A5E5',
-            color: '#00A5E5',
-            margin: '0',
-            height: '20px'
+            padding: '0',
+            display: 'grid',
+            justifyItems: 'center',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
         },
         title: {
+            width: '100vw',
             fontSize: '23pt',
             textAlign: 'center',
             backgroundColor: '#FFFFFF',
             margin: '0',
-            padding: '0.7em',
-            borderStyle: 'none',
-            borderBottomStyle: 'solid',
-            borderWidth: '2px',
-            borderColor: '#E6E6E6',
+            padding: '0.7em 0 0.7em 0',
+            borderStyle: 'solid none solid none',
+            borderTopWidth: '20px',
+            borderTopColor: '#00A5E5',
+            borderBottomWidth: '2px',
+            borderBottomColor: '#E6E6E6',
         },
         dropdown: {
+            width: '20vw',
+            borderRadius: '7px',
+            borderColor: '#E6E6E6',
+            borderWidth: '2px',
             fontSize: '13pt',
-            width: 'inherit',
             padding: '10px',
             margin: '20px 20px 0 20px'
         }
@@ -58,7 +57,7 @@ const App = () => {
         setDropDownValue(event.target.value)
     }
 
-    const citySelector = <form>
+    const citySelector =
         <select style={styles.dropdown} name='cities' onChange={handleChange}>
             <option value={'Kaikki kaupungit'}>Kaikki kaupungit</option>
             <option value={'660129'}>Espoo</option>
@@ -66,7 +65,7 @@ const App = () => {
             <option value={'650225'}>Kuopio</option>
             <option value={'634963'}>Tampere</option>
         </select>
-    </form>
+
 
     if (dropDownValue === 'Kaikki kaupungit') {
         shownCity = <div>
@@ -83,7 +82,6 @@ const App = () => {
 
     return (
         <div style={styles.page}>
-            <p style={styles.topBar}>Hello! :)</p>
             <p style={styles.title}>Säätutka</p>
             {citySelector}
             {shownCity}
