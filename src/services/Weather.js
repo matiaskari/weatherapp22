@@ -1,5 +1,5 @@
 
-const APIkey = '06c6c105b0c70ae431dc41c8de9cff77'
+const APIkey = ''
 
 const getWeatherData = async () => {
     const cityIDs = [
