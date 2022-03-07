@@ -5,6 +5,8 @@ import City from './components/City.js'
 
 const App = () => {
     const [weatherData, setWeatherData] = useState([])
+    const [dropDownValue, setDropDownValue] = useState('Kaikki kaupungit')
+    let shownCity = <div></div>
 
     useEffect(() => {
         async function getData() {
@@ -36,24 +38,38 @@ const App = () => {
         }
     }
 
+    const handleChange = (event) => {
+        setDropDownValue(event.target.value)
+    }
+
     const citySelector = <form>
-        <select name='cities'>
+        <select name='cities' onChange={handleChange}>
             <option value={'Kaikki kaupungit'}>Kaikki kaupungit</option>
-            <option value={'Espoo'}>Espoo</option>
-            <option value={'Jyväskylä'}>Jyväskylä</option>
-            <option value={'Kuopio'}>Kuopio</option>
-            <option value={'Tampere'}>Tampere</option>
+            <option value={'660129'}>Espoo</option>
+            <option value={'655195'}>Jyväskylä</option>
+            <option value={'650225'}>Kuopio</option>
+            <option value={'634963'}>Tampere</option>
         </select>
     </form>
+
+    if (dropDownValue === 'Kaikki kaupungit') {
+        shownCity = <div>
+            <City weatherData={weatherData[0]} />
+            <City weatherData={weatherData[1]} />
+            <City weatherData={weatherData[2]} />
+            <City weatherData={weatherData[3]} />
+        </div>
+    } else {
+        shownCity = <div>
+            <City weatherData={weatherData.find(city => city.id.toString() === dropDownValue)} />
+        </div>
+    }
 
     return (
         <div style={styles.page}>
             <p style={styles.title}>Säätutka</p>
             {citySelector}
-            <City weatherData={weatherData[0]} />
-            <City weatherData={weatherData[1]} />
-            <City weatherData={weatherData[2]} />
-            <City weatherData={weatherData[3]} />
+            {shownCity}
         </div >
     )
 }

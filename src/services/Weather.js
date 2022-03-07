@@ -3,10 +3,10 @@ const APIkey = '06c6c105b0c70ae431dc41c8de9cff77'
 
 const getWeatherData = async () => {
     const cityIDs = [
-        '634963', //Tampere
+        '660129', //Espoo
         '655195', //Jyväskylä
         '650225', //Kuopio
-        '660129'  //Espoo
+        '634963' //Tampere
     ]
     try {
         const endArray = []
