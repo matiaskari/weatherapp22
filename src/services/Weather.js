@@ -9,15 +9,21 @@ const getWeatherData = async () => {
         '634963' //Tampere
     ]
     try {
-        const endArray = []
+        const endArray = [[], [], [], []]
         const requestOptions = {
             method: 'GET',
             redirect: 'follow'
         }
-        for (let i = 0; i < cityIDs.length; i++) {
+        for (let i = 0; i < cityIDs.length; i++) { //Fetching current weather for all cities
             await fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityIDs[i] + '&appid=' + APIkey, requestOptions)
                 .then(response => response.json())
-                .then(result => endArray.push(result))
+                .then(result => endArray[i].push(result))
+                .catch(error => console.log('error', error))
+        }
+        for (let i = 0; i < cityIDs.length; i++) { //Fetching 5-day weather forecast for all cities
+            await fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityIDs[i] + '&appid=' + APIkey, requestOptions)
+                .then(response => response.json())
+                .then(result => endArray[i].push(result))
                 .catch(error => console.log('error', error))
         }
         console.log('EndArray', endArray)

@@ -24,7 +24,9 @@ const App = () => {
             justifyContent: 'space-evenly',
             width: '100%',
             fontFamily: 'Arial Regular, Helvetica, sans-serif',
-            backgroundColor: '#F8F9FA'
+            backgroundColor: '#F8F9FA',
+            margin: '0',
+            padding: '0'
         },
         topBar: {
             backgroundColor: '#00A5E5',
@@ -74,13 +76,13 @@ const App = () => {
         </div>
     } else {
         shownCity = <div>
-            <City weatherData={weatherData.find(city => city.id.toString() === dropDownValue)} />
+            <City weatherData={weatherData.find(city => city[0].id.toString() === dropDownValue)} />
         </div>
     }
 
     return (
         <div style={styles.page}>
-            <p style={styles.topBar}>_</p>
+            <p style={styles.topBar}>Hello! :)</p>
             <p style={styles.title}>Säätutka</p>
             {citySelector}
             {shownCity}

@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CurrentWeather = ({ weatherData }) => {
+
     const style = {
         box: {
             display: 'grid',
@@ -54,7 +55,7 @@ const CurrentWeather = ({ weatherData }) => {
     const date = new Date()
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let dayNumber = ''
-    if (date.getDate() === 1 || date.getDate() === 21 || date.getDate() === 31) {
+    if (date.getDate() === 1 || date.getDate() === 21 || date.getDate() === 31) { //Formatting the number of the date
         dayNumber = date.getDate() + 'st'
     } else if (date.getDate() === 2 || date.getDate() === 22) {
         dayNumber = date.getDate() + 'nd'
@@ -71,24 +72,50 @@ const CurrentWeather = ({ weatherData }) => {
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
+    let precipitation = '' //Variable to save the amount of precipitation, either rain or snow
+    let precipDuration = '3' //Variable to save the time interval that was provided in the fetched precipitation data (preferably 3 (hours), is set to 1 if 3h data not available and 1h data is)
+
     if (weatherData) {
+        const data = weatherData[0]
+
+        if (data.hasOwnProperty('rain')) {
+            if (data.rain.hasOwnProperty('3h')) { //Prefer showing the data for the past 3h
+                precipitation = data.rain['3h']
+                precipDuration = '3' //Shows the user that 3h precipitation data was available
+            } else {
+                precipitation = data.rain['1h'] //If 3h data not available, show 1h data instead
+                precipDuration = '1' //Shows the user that 3h precipitation data was not available but 1h data was
+            }
+        } else if (data.hasOwnProperty('snow')) { //Same as above, but the precipitation is snow instead of rain
+            if (data.snow.hasOwnProperty('3h')) {
+                precipitation = data.snow['3h']
+                precipDuration = '3'
+            } else {
+                precipitation = data.snow['1h']
+                precipDuration = '1'
+            }
+        } else {
+            precipitation = '0'
+        }
+
         return (
             <div style={style.box}>
                 <div>
-                    <p style={style.title}>{weatherData.name === 'Jyvaskyla' ? 'Jyväskylä' : weatherData.name}</p>
-                    <p style={style.smallText}>{capitalize(weatherData.weather[0].description)}</p>
+                    <p style={style.title}>{data.name === 'Jyvaskyla' ? 'Jyväskylä' : data.name}</p>
+                    <p style={style.smallText}>{capitalize(data.weather[0].description)}</p>
                 </div>
                 <div>
-                    <p style={style.temp}>{weatherData.weather.icon} {Math.round(weatherData.main.temp - 273.15) / 1} &deg;C</p>
+
+                    <p style={style.temp}><img src={'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'} alt={data.weather[0].description} />{Math.round(data.main.temp - 273.15) / 1} &deg;C</p>
                 </div>
                 <div>
                     <p style={style.subTitle}>{day}</p>
                     <p style={style.smallText}>{time}</p>
                 </div>
                 <div>
-                    <p style={style.smallTextRight}>Wind: {weatherData.wind.speed} m/s</p>
-                    <p style={style.smallTextRight}>Humidity: {weatherData.main.humidity} %</p>
-                    <p style={style.smallTextRight}>Precipitation (3 h): {weatherData.rain} mm</p>
+                    <p style={style.smallTextRight}>Wind: {data.wind.speed} m/s</p>
+                    <p style={style.smallTextRight}>Humidity: {data.main.humidity} %</p>
+                    <p style={style.smallTextRight}>Precipitation ({precipDuration} h): {precipitation} mm</p>
                 </div>
             </div>
         )
